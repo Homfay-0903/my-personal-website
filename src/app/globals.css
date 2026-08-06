@@ -116,6 +116,39 @@ body {
   }
 }
 
+/* marquee: seamless auto-scrolling screenshot gallery */
+.marquee {
+  overflow: hidden;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll var(--marquee-duration, 60s) linear infinite;
+}
+
+.marquee-cell {
+  flex: none;
+  padding-right: 1rem;
+}
+
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
 /* plotter index row: prints a cobalt baseline on hover */
 .print-line {
   position: relative;

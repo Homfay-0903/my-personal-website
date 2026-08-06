@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo } from "react";
+import { useMemo, type CSSProperties } from "react";
 import { useQuery } from "convex/react";
 import { api } from "convex/_generated/api";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
@@ -55,7 +55,6 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
   const summary = project.summary[lang];
   const description = project.description[lang];
   const paragraphs = description.split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean);
-  const [heroImage, ...restImages] = project.images;
 
   return (
     <article className="pb-6 pt-10 sm:pt-14">
@@ -100,11 +99,33 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
         <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-muted">{summary}</p>
       </header>
 
-      {heroImage && (
-        <div className="mt-10 overflow-hidden border border-line">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={heroImage} alt={title} className="size-full object-cover" />
-        </div>
+      {project.images.length > 0 && (
+        <section
+          aria-label={t("detail.screens")}
+          className="mt-10 border-y border-line py-4"
+        >
+          <div
+            className="marquee"
+            style={{ "--marquee-duration": `${Math.max(24, project.images.length * 12)}s` } as CSSProperties}
+          >
+            <div className="marquee-track">
+              {[...project.images, ...project.images].map((image, i) => (
+                <div
+                  key={i}
+                  className="marquee-cell h-52 w-80 sm:h-64 sm:w-[26rem] lg:h-72 lg:w-[32rem]"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={image}
+                    alt={`${title} ${(i % project.images.length) + 1}`}
+                    className="size-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
       )}
 
       <div className="mt-10 grid gap-10 md:grid-cols-12">
@@ -114,16 +135,6 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
               {paragraph}
             </p>
           ))}
-          {restImages.length > 0 && (
-            <div className="grid gap-6 pt-2 sm:grid-cols-2">
-              {restImages.map((image, i) => (
-                <div key={i} className="overflow-hidden border border-line">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={image} alt={`${title} ${i + 2}`} className="size-full object-cover" />
-                </div>
-              ))}
-            </div>
-          )}
         </div>
 
         <aside className="md:col-span-4">

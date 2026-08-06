@@ -6,20 +6,20 @@ import { site } from "@/lib/site";
 
 const skills = {
   frontend: [
-    "React / Next.js",
+    "React / Next.js / ReactNative",
+    "Vue / Nuxt.js / uniapp",
     "TypeScript",
     "Tailwind CSS",
-    "Vite",
-    "State & data-fetching",
-    "Accessibility",
+    "nodejs",
+    "Vite / Webpack",
   ],
   agent: [
+    "Claude Code / Codex",
     "LLM orchestration",
+    "langChain / langGraph",
+    "Prompt & Skill & Mcp & Asp & Lsp",
+    "Vibe Coding",
     "Playwright / browser tools",
-    "Python tooling",
-    "Prompt & eval workflows",
-    "Convex / serverless data",
-    "API design",
   ],
 };
 

@@ -22,7 +22,7 @@ const en = {
   "nav.themeDark": "Dark",
 
   "hero.eyebrow": "Selected work — index",
-  "hero.title": "Frontend developer building interfaces people glide through.",
+  "hero.title": "Frontend / Agent Developer building interfaces people glide through.",
   "hero.sub": "A directory of recent web and AI-agent projects. Open a line to view specs, demos, and source.",
   "hero.ctaProjects": "Browse all projects",
   "hero.ctaContact": "Say hi",
@@ -41,7 +41,7 @@ const en = {
   "about.skillsFrontend": "Frontend",
   "about.skillsAgent": "Agent / automation",
   "about.metaWhere": "Based in",
-  "about.metaWhereValue": "China",
+  "about.metaWhereValue": "Xian, China",
   "about.metaOpenTo": "Open to",
   "about.metaOpenToValue": "frontend & agent roles",
   "about.contactTitle": "Let’s build something precise.",
@@ -59,6 +59,7 @@ const en = {
   "list.empty": "Nothing here yet.",
 
   "detail.eyebrow": "Project spec",
+  "detail.screens": "Screens — scrolling gallery",
   "detail.stack": "Tech stack",
   "detail.category": "Category",
   "detail.tags": "Tags",
@@ -151,7 +152,7 @@ const zh: Record<Key, string> = {
   "nav.themeDark": "夜间",
 
   "hero.eyebrow": "精选作品 — 索引",
-  "hero.title": "前端开发者，专注打造让人用得顺手的界面与体验。",
+  "hero.title": "前端/agent 开发者，专注打造让人用得顺手的界面与体验。",
   "hero.sub": "一份项目目录。打开任意一项，即可查看规格、在线演示与源码。本站所有数据都由后台面板管理，无需重新部署即可增删替换。",
   "hero.ctaProjects": "浏览全部项目",
   "hero.ctaContact": "联系我",
@@ -170,7 +171,7 @@ const zh: Record<Key, string> = {
   "about.skillsFrontend": "前端",
   "about.skillsAgent": "Agent / 工具链",
   "about.metaWhere": "所在地",
-  "about.metaWhereValue": "中国",
+  "about.metaWhereValue": "中国西安",
   "about.metaOpenTo": "求职方向",
   "about.metaOpenToValue": "前端 / Agent 开发",
   "about.contactTitle": "一起做点精确的东西吧。",
@@ -188,6 +189,7 @@ const zh: Record<Key, string> = {
   "list.empty": "暂无项目。",
 
   "detail.eyebrow": "项目规格",
+  "detail.screens": "截图 — 滚动图廊",
   "detail.stack": "技术栈",
   "detail.category": "分类",
   "detail.tags": "标签",
