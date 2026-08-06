@@ -1,4 +1,4 @@
-export const ADMIN_SETUP_SECRET = "pf-609e0075a9";
+export const ADMIN_SETUP_SECRET = "yjcrekD8J46FM9Cvq1VGho5U";
 
 export const PROJECT_CATEGORIES = [
   { id: "frontend", label: { en: "Frontend", zh: "前端" } },
