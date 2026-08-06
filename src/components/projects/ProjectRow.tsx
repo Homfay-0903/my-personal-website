@@ -26,7 +26,7 @@ export function ProjectRow({
         className="absolute inset-0 z-0 rounded-sm"
         aria-label={title}
       />
-      <div className="relative z-10 flex flex-col gap-1.5 px-3 py-5 transition-colors group-hover:bg-paper/60 sm:flex-row sm:items-baseline sm:gap-5 sm:px-4">
+      <div className="pointer-events-none relative z-10 flex flex-col gap-1.5 px-3 py-5 transition-colors group-hover:bg-paper/60 sm:flex-row sm:items-baseline sm:gap-5 sm:px-4">
         <span className="font-mono text-[11px] tracking-widest text-muted">
           {String(index + 1).padStart(2, "0")}
         </span>

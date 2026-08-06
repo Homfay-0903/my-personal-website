@@ -23,7 +23,7 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-40 bg-paper/85 backdrop-blur">
       <div className="rule" />
-      <nav className="flex items-center justify-between gap-4 py-3.5">
+      <nav className="site-container flex items-center justify-between gap-4 py-3.5">
         <Link
           href="/"
           className="flex items-baseline gap-1.5 font-display text-[17px] font-semibold uppercase tracking-tight"
@@ -78,7 +78,7 @@ export function Navbar() {
         </div>
       </nav>
 
-      <nav className="flex items-center gap-5 border-t border-line py-2.5 text-sm text-muted sm:hidden">
+      <nav className="site-container flex items-center gap-5 border-t border-line py-2.5 text-sm text-muted sm:hidden">
         {links.map((l) => (
           <Link key={l.href} href={l.href} className="transition-colors hover:text-ink">
             {l.label}

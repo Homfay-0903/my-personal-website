@@ -95,6 +95,27 @@ body {
   margin-bottom: 0.25rem;
 }
 
+/* shared page gutter: aligns nav / main / footer and keeps content
+   away from the viewport edges */
+.site-container {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 64rem;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .site-container {
+    padding-inline: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-container {
+    padding-inline: 3.5rem;
+  }
+}
+
 /* plotter index row: prints a cobalt baseline on hover */
 .print-line {
   position: relative;

@@ -12,7 +12,7 @@ export function Footer() {
     <footer id="contact" className="mt-20 scroll-mt-24">
       <div className="rule" />
 
-      <div className="grid gap-10 py-12 md:grid-cols-12">
+      <div className="site-container grid gap-10 py-12 md:grid-cols-12">
         <div className="md:col-span-5">
           <p className="eyebrow">Contact</p>
           <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight md:text-4xl">
@@ -48,7 +48,7 @@ export function Footer() {
       </div>
 
       <div className="rule" />
-      <div className="flex flex-col gap-2 py-6 font-mono text-[11px] tracking-wider text-muted sm:flex-row sm:items-center sm:justify-between">
+      <div className="site-container flex flex-col gap-2 py-6 font-mono text-[11px] tracking-wider text-muted sm:flex-row sm:items-center sm:justify-between">
         <span>© {new Date().getFullYear()} {site.name} — {site.role[lang]}</span>
         <span>Set in Archivo · Public Sans · JetBrains Mono</span>
       </div>

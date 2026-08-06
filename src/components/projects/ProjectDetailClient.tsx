@@ -167,6 +167,44 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
                   ))}
                 </div>
               </div>
+              <div className="grid grid-cols-2 gap-x-6 gap-y-6 md:grid-cols-1">
+                <div>
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-muted">
+                    {t("detail.live")}
+                  </p>
+                  {project.demoUrl ? (
+                    <a
+                      href={project.demoUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-1.5 inline-flex items-center gap-1 break-all text-sm font-medium text-cobalt hover:underline"
+                    >
+                      {project.demoUrl.replace(/^https?:\/\//, "")}
+                      <ArrowUpRight size={13} className="shrink-0" />
+                    </a>
+                  ) : (
+                    <p className="mt-1.5 font-mono text-xs tracking-widest text-muted">—</p>
+                  )}
+                </div>
+                <div>
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-muted">
+                    {t("detail.source")}
+                  </p>
+                  {project.repoUrl ? (
+                    <a
+                      href={project.repoUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-1.5 inline-flex items-center gap-1 break-all text-sm font-medium text-cobalt hover:underline"
+                    >
+                      {project.repoUrl.replace(/^https?:\/\//, "")}
+                      <ArrowUpRight size={13} className="shrink-0" />
+                    </a>
+                  ) : (
+                    <p className="mt-1.5 font-mono text-xs tracking-widest text-muted">—</p>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         </aside>
