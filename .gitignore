@@ -32,6 +32,7 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # vercel
 .vercel
@@ -48,3 +49,4 @@ convex-dev.log
 convex-init-output.log
 convex-init.ps1
 fetch-trace.js
+next-dev.log
