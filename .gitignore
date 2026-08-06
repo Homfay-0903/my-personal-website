@@ -50,3 +50,5 @@ convex-init-output.log
 convex-init.ps1
 fetch-trace.js
 next-dev.log
+
+.vercel

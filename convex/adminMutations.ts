@@ -1,14 +1,13 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 import { ADMIN_SETUP_SECRET } from "./constants";
-import { requireAdmin } from "./helpers";
+import { requireAdmin, getSessionEmail } from "./helpers";
 import { projectFields } from "./shared";
 
 export const amIAdmin = query({
   handler: async (ctx) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity?.email) return false;
-    const email: string = identity.email;
+    const email = await getSessionEmail(ctx);
+    if (!email) return false;
     const admin = await ctx.db
       .query("admins")
       .withIndex("by_email", (q) => q.eq("email", email))
@@ -23,8 +22,7 @@ export const becomeAdmin = mutation({
     if (secret !== ADMIN_SETUP_SECRET) {
       throw new Error("Invalid setup secret");
     }
-    const identity = await ctx.auth.getUserIdentity();
-    const email = identity?.email;
+    const email = await getSessionEmail(ctx);
     if (!email) throw new Error("You must sign in first");
     const existing = await ctx.db
       .query("admins")
