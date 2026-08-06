@@ -66,13 +66,24 @@ npx convex run seed
    - `NEXT_PUBLIC_CONVEX_SITE_URL` = `https://<deployment-name>.convex.site`
      (HTTP Actions / auth redirects)
 
-4. Deploy. Then in a terminal:
+4. Set auth secrets on the production deployment (required for sign-up/sign-in
+   to work):
+
+   ```bash
+   # RS256 private key in PKCS8 PEM format (also generatable in the
+   # deployment's dashboard under Settings -> Environment variables)
+   Get-Content jwt_private_key.pem -Raw | npx convex env set JWT_PRIVATE_KEY
+   # CONVEX_SITE_URL is built-in (auto-set to your .convex.site URL), no need
+   # to set it manually.
+   ```
+
+5. Deploy. Then in a terminal:
 
    ```bash
    npx convex run seed --prod   # optional: seed sample projects
    ```
 
-5. Open `https://your-app.vercel.app/admin`, create your account, and activate it as admin using the activation code (which verifies against `ADMIN_SETUP_SECRET`).
+6. Open `https://your-app.vercel.app/admin`, create your account, and activate it as admin using the activation code (which verifies against `ADMIN_SETUP_SECRET`).
 
 ## Scripts
 
