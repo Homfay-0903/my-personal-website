@@ -6,7 +6,7 @@ import { useI18n } from "@/lib/i18n";
 import { site } from "@/lib/site";
 
 export function Footer() {
-  const { t, lang } = useI18n();
+  const { lang } = useI18n();
 
   return (
     <footer id="contact" className="mt-20 scroll-mt-24">

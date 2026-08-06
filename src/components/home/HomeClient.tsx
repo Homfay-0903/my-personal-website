@@ -28,13 +28,13 @@ export function HomeClient() {
           {t("hero.sub")}
         </p>
         <div className="mt-9 flex flex-wrap gap-3">
-          <a
+          <Link
             href="/projects"
             className="group inline-flex items-center gap-2 bg-ink px-6 py-3 text-sm font-medium text-paper transition-colors hover:bg-cobalt"
           >
             {t("hero.ctaProjects")}
             <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
-          </a>
+          </Link>
           <a
             href="#contact"
             className="inline-flex items-center gap-2 border border-line px-6 py-3 text-sm transition-colors hover:border-cobalt hover:text-cobalt"

@@ -7,7 +7,7 @@ import { categoryLabel } from "@/lib/categories";
 import { useI18n } from "@/lib/i18n";
 
 export function ProjectCard({ project }: { project: Doc<"projects"> }) {
-  const { lang, t } = useI18n();
+  const { lang } = useI18n();
   const title = project.title[lang];
   const image = project.images[0];
 

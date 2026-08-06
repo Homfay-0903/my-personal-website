@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { site } from "@/lib/site";
@@ -25,7 +24,7 @@ const skills = {
 };
 
 export default function AboutPage() {
-  const { t, lang } = useI18n();
+  const { t } = useI18n();
 
   return (
     <section className="pb-6 pt-16 sm:pt-20">

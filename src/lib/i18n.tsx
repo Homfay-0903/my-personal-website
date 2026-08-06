@@ -292,7 +292,11 @@ const I18nContext = createContext<I18nValue | null>(null);
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>("en");
 
+  // Hydration-safe: SSR renders "en"; the real preference is applied once
+  // the client is mounted (reading localStorage during render would cause
+  // hydration mismatches).
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time hydration sync
     setLangState(detectInitialLang());
   }, []);
 

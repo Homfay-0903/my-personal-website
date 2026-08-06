@@ -4,17 +4,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 import { useI18n } from "@/lib/i18n";
 
 export function Navbar() {
   const { t, toggleLang } = useI18n();
   const { resolvedTheme, setTheme } = useTheme();
   const pathname = usePathname();
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
 
-  const isDark = mounted && resolvedTheme === "dark";
+  const isDark = resolvedTheme === "dark";
 
   const links = [
     { href: "/", label: t("nav.work") },

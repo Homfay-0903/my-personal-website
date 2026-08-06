@@ -42,19 +42,47 @@ export const listAll = query({
     await requireAdmin(ctx);
     const rows = await ctx.db.query("projects").collect();
     const sorted = rows.sort((a, b) => a.order - b.order);
-    return Promise.all(
-      sorted.map(async (project) => {
-        if (project.images.length && !project.images.every((i) => i.startsWith("http"))) {
-          const resolved = await Promise.all(
-            project.images.map(async (image) =>
-              image.startsWith("http") ? image : (await ctx.storage.getUrl(image)) ?? image,
-            ),
-          );
-          return { ...project, images: resolved };
-        }
+    return resolveImagesForDocs(ctx, sorted);
+  },
+});
+
+async function resolveImagesForDocs<T extends { images: string[] }>(
+  ctx: { storage: { getUrl: (id: string) => Promise<string | null> } },
+  projects: T[],
+): Promise<T[]> {
+  return Promise.all(
+    projects.map(async (project): Promise<T> => {
+      if (project.images.length === 0 || project.images.every((i) => i.startsWith("http"))) {
         return project;
-      }),
-    );
+      }
+      const resolved = await Promise.all(
+        project.images.map(async (image) =>
+          image.startsWith("http") ? image : (await ctx.storage.getUrl(image)) ?? image,
+        ),
+      );
+      return { ...project, images: resolved };
+    }),
+  );
+}
+
+export const getById = query({
+  args: { id: v.id("projects") },
+  handler: async (ctx, { id }) => {
+    await requireAdmin(ctx);
+    const project = await ctx.db.get(id);
+    if (!project) return null;
+    const [resolved] = await resolveImagesForDocs(ctx, [project]);
+    return resolved;
+  },
+});
+
+export const resolveStorageUrl = mutation({
+  args: { storageId: v.string() },
+  handler: async (ctx, { storageId }) => {
+    await requireAdmin(ctx);
+    const url = await ctx.storage.getUrl(storageId);
+    if (!url) throw new Error("Storage file not found");
+    return url;
   },
 });
 
