@@ -153,13 +153,13 @@ const zh: Record<Key, string> = {
 
   "hero.eyebrow": "精选作品 — 索引",
   "hero.title": "前端/agent 开发者，专注打造让人用得顺手的界面与体验。",
-  "hero.sub": "一份项目目录。打开任意一项，即可查看规格、在线演示与源码。本站所有数据都由后台面板管理，无需重新部署即可增删替换。",
+  "hero.sub": "一份项目目录。打开任意一项，即可查看规格、在线体验与源码。本站所有数据都由后台面板管理，无需重新部署即可增删替换。",
   "hero.ctaProjects": "浏览全部项目",
   "hero.ctaContact": "联系我",
 
   "home.sectionAbout": "关于我",
   "home.indexLabel": "项目索引",
-  "home.live": "在线演示",
+  "home.live": "在线体验",
   "home.source": "源码",
   "home.countPrefix": "编号",
 
@@ -194,7 +194,7 @@ const zh: Record<Key, string> = {
   "detail.category": "分类",
   "detail.tags": "标签",
   "detail.links": "链接",
-  "detail.live": "在线演示",
+  "detail.live": "在线体验",
   "detail.source": "源码",
   "detail.prev": "上一个项目",
   "detail.next": "下一个项目",
@@ -243,7 +243,7 @@ const zh: Record<Key, string> = {
   "admin.category": "分类",
   "admin.techStack": "技术栈（逗号分隔）",
   "admin.tags": "标签（逗号分隔）",
-  "admin.demoUrl": "在线演示 URL",
+  "admin.demoUrl": "在线体验 URL",
   "admin.repoUrl": "源码仓库 URL",
   "admin.images": "截图",
   "admin.imagesHint": "上传截图，或直接粘贴图片 URL（每行一个）。",
