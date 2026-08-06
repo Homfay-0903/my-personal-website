@@ -8,9 +8,10 @@ export const amIAdmin = query({
   handler: async (ctx) => {
     const identity = await ctx.auth.getUserIdentity();
     if (!identity?.email) return false;
+    const email: string = identity.email;
     const admin = await ctx.db
       .query("admins")
-      .withIndex("by_email", (q) => q.eq("email", identity.email))
+      .withIndex("by_email", (q) => q.eq("email", email))
       .unique();
     return admin !== null;
   },
@@ -40,7 +41,20 @@ export const listAll = query({
   handler: async (ctx) => {
     await requireAdmin(ctx);
     const rows = await ctx.db.query("projects").collect();
-    return rows.sort((a, b) => a.order - b.order);
+    const sorted = rows.sort((a, b) => a.order - b.order);
+    return Promise.all(
+      sorted.map(async (project) => {
+        if (project.images.length && !project.images.every((i) => i.startsWith("http"))) {
+          const resolved = await Promise.all(
+            project.images.map(async (image) =>
+              image.startsWith("http") ? image : (await ctx.storage.getUrl(image)) ?? image,
+            ),
+          );
+          return { ...project, images: resolved };
+        }
+        return project;
+      }),
+    );
   },
 });
 

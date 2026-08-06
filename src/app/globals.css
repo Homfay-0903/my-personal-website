@@ -1,26 +1,133 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #f6f5f1;
+  --ink: #13181f;
+  --line: #d8dce0;
+  --cobalt: #2852e0;
+  --amber: #d9480f;
+  --muted: #5b6470;
+  --code-bg: #11161d;
+}
+
+[data-theme="dark"] {
+  --paper: #0c1118;
+  --ink: #e9e6da;
+  --line: #222b36;
+  --cobalt: #7e9bff;
+  --amber: #f59f60;
+  --muted: #98a1ae;
+  --code-bg: #0a0e14;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-line: var(--line);
+  --color-cobalt: var(--cobalt);
+  --color-amber: var(--amber);
+  --color-muted: var(--muted);
+  --color-code-bg: var(--code-bg);
+
+  --font-sans: var(--font-sans-public), ui-sans-serif, system-ui,
+    -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  --font-display: var(--font-display-archivo), var(--font-sans-public),
+    ui-sans-serif, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-mono: var(--font-mono-jetbrains), ui-monospace, SFMono-Regular,
+    Menlo, Consolas, "Liberation Mono", monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--cobalt);
+  color: var(--paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--cobalt);
+  outline-offset: 2px;
+}
+
+/* ---- blueprint / plotter primitives ---- */
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--cobalt);
+  flex: none;
+}
+
+.rule {
+  height: 1px;
+  background: var(--line);
+  border: 0;
+}
+
+.rule-tight {
+  height: 1px;
+  background: var(--line);
+  border: 0;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+/* plotter index row: prints a cobalt baseline on hover */
+.print-line {
+  position: relative;
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.print-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--cobalt);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.print-line:hover::after {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .print-line::after {
+    transition: none;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

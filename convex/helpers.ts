@@ -1,13 +1,13 @@
-import { MutationCtx, QueryCtx } from "./_generated/server";
+import { QueryCtx } from "./_generated/server";
 
-type Authish = Pick<MutationCtx | QueryCtx, "auth">;
+type AdminCtx = Pick<QueryCtx, "auth" | "db">;
 
-export async function getSessionEmail(ctx: Authish): Promise<string | null> {
+export async function getSessionEmail(ctx: AdminCtx): Promise<string | null> {
   const identity = await ctx.auth.getUserIdentity();
   return identity?.email ?? null;
 }
 
-export async function isAdmin(ctx: Authish): Promise<boolean> {
+export async function isAdmin(ctx: AdminCtx): Promise<boolean> {
   const email = await getSessionEmail(ctx);
   if (!email) return false;
   const admin = await ctx.db
@@ -17,9 +17,16 @@ export async function isAdmin(ctx: Authish): Promise<boolean> {
   return admin !== null;
 }
 
-export async function requireAdmin(ctx: Authish): Promise<string> {
+export async function requireAdmin(ctx: AdminCtx): Promise<string> {
   const email = await getSessionEmail(ctx);
-  if (!email || !(await isAdmin(ctx))) {
+  if (!email) {
+    throw new Error("Unauthorized: admin access required");
+  }
+  const admin = await ctx.db
+    .query("admins")
+    .withIndex("by_email", (q) => q.eq("email", email))
+    .unique();
+  if (!admin) {
     throw new Error("Unauthorized: admin access required");
   }
   return email;
