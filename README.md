@@ -60,9 +60,11 @@ npx convex run seed
 
 3. On Vercel: import the GitHub repo. In **Environment Variables** add:
 
-   - `CONVEX_DEPLOYMENT` = the production deployment name (e.g. `excited-elephant-123`)
-   - `NEXT_PUBLIC_CONVEX_URL` = `https://<deployment-name>.convex.site`
+   - `CONVEX_DEPLOYMENT` = the production deployment name (e.g. `wonderful-pony-433`)
+   - `NEXT_PUBLIC_CONVEX_URL` = `https://<deployment-name>.convex.cloud` — the
+     Convex *client* URL (must end in `.convex.cloud`, not `.convex.site`)
    - `NEXT_PUBLIC_CONVEX_SITE_URL` = `https://<deployment-name>.convex.site`
+     (HTTP Actions / auth redirects)
 
 4. Deploy. Then in a terminal:
 
