@@ -52,3 +52,4 @@ fetch-trace.js
 next-dev.log
 
 .vercel
+convex-logs.txt
