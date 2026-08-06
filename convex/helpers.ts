@@ -1,10 +1,18 @@
 import { QueryCtx } from "./_generated/server";
+import { Id } from "./_generated/dataModel";
 
 type AdminCtx = Pick<QueryCtx, "auth" | "db">;
 
 export async function getSessionEmail(ctx: AdminCtx): Promise<string | null> {
   const identity = await ctx.auth.getUserIdentity();
-  return identity?.email ?? null;
+  if (!identity) return null;
+  if (identity.email) return identity.email;
+  // Fallback for tokens without the email claim issued before customClaims:
+  // Convex Auth JWTs carry the user id as `sub` (format "<userId>|<sessionId>").
+  const userId = identity.subject.split("|")[0];
+  if (!userId) return null;
+  const user = await ctx.db.get(userId as Id<"users">);
+  return user?.email ?? null;
 }
 
 export async function isAdmin(ctx: AdminCtx): Promise<boolean> {
