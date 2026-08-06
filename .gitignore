@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# convex (generated)
+/convex/_generated/
+
+# local scripts & logs
+convex-dev.log
+convex-init-output.log
+convex-init.ps1
+fetch-trace.js
